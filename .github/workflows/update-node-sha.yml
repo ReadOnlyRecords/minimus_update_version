@@ -1,0 +1,19 @@
+
+name: Update NODE_SHA
+on: 
+  repository_dispatch:
+    types: [newImageVersion]
+jobs:
+  uupdate:
+    runs-on: ubuntu-latest
+    steps:
+      # Update the image SHA -- requires a PAT with write access to Action variables.
+      # Check that the image name is node and it's not a -dev variant.
+      - name: Set NODE_SHA
+        if: "github.event.client_payload.imageDetails.name == 'node' && !contains(github.event.client_payload.imageDetails.version, '-dev')"
+        env:
+          GH_TOKEN: ${{ secrets.REPO_UPDATE_PAT }}
+        run: |
+          gh variable set NODE_SHA --body "${{ github.event.client_payload.imageDetails.digest }}" --repo ${{ github.repository }}
+
+
