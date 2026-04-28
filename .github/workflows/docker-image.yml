@@ -15,8 +15,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --build-arg NODESHA=${env.NODESHA}--file Dockerfile --tag my-image-name:$(date +%s)
-      env:
-        NODESHA: ${{ vars.NODESHA }}
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: false
+        tags: readonlyrecords/node-app:latest
+        build-args: |
+          NODESHA=${{ vars.NODESHA }}
       
