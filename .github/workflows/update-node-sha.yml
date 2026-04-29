@@ -15,5 +15,10 @@ jobs:
           GH_TOKEN: ${{ secrets.REPO_UPDATE_PAT }}
         run: |
           gh variable set NODE_SHA --body "${{ github.event.client_payload.imageDetails.digest }}" --repo ${{ github.repository }}
-
-
+      # Now, do -dev
+      - name: Set NODE_SHA_DEV
+        if: "github.event.client_payload.imageDetails.name == 'node' && contains(github.event.client_payload.imageDetails.version, '-dev')"
+        env:
+          GH_TOKEN: ${{ secrets.REPO_UPDATE_PAT }}
+        run: |
+          gh variable set NODE_SHA_DEV --body "${{ github.event.client_payload.imageDetails.digest }}" --repo ${{ github.repository }}
