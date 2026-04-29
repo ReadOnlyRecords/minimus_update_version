@@ -27,5 +27,6 @@ jobs:
         tags: readonlyrecords/node-app:latest
         build-args: |
           NODESHA=${{ vars.NODE_SHA }}
+          NODESHADEV=${{ vars.NODE_SHA_DEV }}
       
       
