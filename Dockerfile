@@ -1,2 +1,2 @@
 ARG NODESHA
-FROM reg.mini.dev/node@sha256:$NODESHA
+FROM reg.mini.dev/node@$NODESHA
