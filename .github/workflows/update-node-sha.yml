@@ -2,7 +2,7 @@
 name: Update NODE_SHA
 on: 
   repository_dispatch:
-    types: [newImageVersion]
+    # types: [newImageVersion]
 jobs:
   uupdate:
     runs-on: ubuntu-latest
