@@ -4,7 +4,7 @@ on:
   repository_dispatch:
     types: [newImageVersion]
 jobs:
-  uupdate:
+  update:
     runs-on: ubuntu-latest
     steps:
       # Update the image SHA -- requires a PAT with write access to Action variables.
